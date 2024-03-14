@@ -9,7 +9,7 @@ import Home from "./components/home";
 import Help from "./components/help";
 import Events from "./components/events";
 import Profile from "./components/profile";
-import OldMain from './components/Buildings/oldmain.jsx';
+import OldMain from './components/Buildings/oldMain.jsx';
 import Trivia from "./components/trivia";
 import Upload from "./components/upload";
 import Reviews from "./components/reviews";
