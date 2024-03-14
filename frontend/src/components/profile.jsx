@@ -1,10 +1,30 @@
-import React from "react";
+
 import Navbar from "./navbar";
 import Jumbo from "./jumbo";
 import Footer from "./footer";
 import '../assets/profile.css';
 import Logo from "../assets/images/profile-icon.png"
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 const Profile = () => {
+
+        const [user, setUser] = useState([]);
+    
+        useEffect(() => {
+            // http://127.0.0.1:8000/api/Users/
+            // http://mrhaydenn.us.to:8000/api/Users/
+            axios.get('http://127.0.0.1:8000/api/get_user/')
+                .then(response => {
+                    setUser(response.data);
+                })
+                .catch(error => {
+                    console.error('Error fetching profile data:', error);
+                });
+        }, []);
+
+
+
     return (
         <div className="Profile">
           <header>
@@ -21,8 +41,6 @@ const Profile = () => {
             
                 <div className="container">
                     <div className="column">
-                        <p className="description"><b>First Name:</b></p>
-                        <p className="description"><b>Last Name:</b></p>
                         <p className="description"><b>Username:</b></p>
                         <p className="description"><b>Email:</b></p>
                         <p className="description"><b>Password:</b></p>
@@ -31,14 +49,17 @@ const Profile = () => {
                     </div>
 
                     <div className="column"> 
-                        <p className="user">((Temp))</p>
-                        <p className="user">((Temp))</p>
-                        <p className="user">((Temp))</p>
+                    {user.map(user => (
+                    <div  key={user.username}>
+                        <p className="user">{user.username}</p>
+                        <p className="user">{user.email}</p>
+                        <p className="user">{user.password}</p>
                         <p className="user">((Temp))</p>
                         <p className="user">((Temp))</p> 
-                        <p className="user">((Temp))</p>
-                        <p className="user">((Temp))</p>
                         </div>
+                    ))}
+                        </div>
+                   
 
                     <div className="column">
                     <button type="button" className="buttons">Edit Profile</button>
@@ -54,3 +75,4 @@ const Profile = () => {
 };
 
 export default Profile;
+

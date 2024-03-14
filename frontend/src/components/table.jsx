@@ -8,7 +8,7 @@ const Table = () => {
     useEffect(() => {
         //http://127.0.0.1:8000/api/events/
         //http://mrhaydenn.us.to:8000/api/events/
-        axios.get('http://mrhaydenn.us.to:8000/api/events/')
+        axios.get('http://127.0.0.1:8000/api/events/')
             .then(response => {
                 setEvents(response.data);
             })
@@ -26,6 +26,7 @@ const Table = () => {
                         <th>Description</th>
                         <th>Event Date</th>
                         <th>Event Location</th>
+                        <th>Images</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,6 +36,7 @@ const Table = () => {
                             <td>{event.description}</td>
                             <td>{event.date}</td>
                             <td>{event.location}</td>
+                            <td>{event.image}</td>
                         </tr>
                     ))}
                 </tbody>

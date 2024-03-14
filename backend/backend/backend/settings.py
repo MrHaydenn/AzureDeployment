@@ -1,6 +1,6 @@
 
 from pathlib import Path
-
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,7 +9,8 @@ SECRET_KEY = 'django-insecure-$dku%gnv!lvmv#9slcnv-s4j-1m98@^y@sfgls(g1k3_$pr52f
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost:3000", "127.0.0.1:3000", '127.0.0.1', 'mrhaydenn.us.to:3000', 'mrhaydenn.us.to', 'http://127.0.0.1:8000/api/login/']
+ALLOWED_HOSTS = ["localhost:3000", "127.0.0.1:3000", '127.0.0.1', 'mrhaydenn.us.to:3000', 'mrhaydenn.us.to', 'http://127.0.0.1:8000/api/login/',
+                 "54.82.115.114", "172.31.21.170", "54.82.115.114"]
 
 
 
@@ -113,3 +114,7 @@ STATIC_URL = 'static/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

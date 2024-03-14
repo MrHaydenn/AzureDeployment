@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.models import User
-from .models import Events, Reviews
+from .models import Events, Reviews, Images
 from django.http import HttpRequest
 import random 
 @api_view(['POST'])
@@ -30,6 +30,16 @@ def register_user(request):
 
     return Response({'message': 'User registered successfully'})
 
+@api_view(['GET'])
+def get_user(request):
+    username = request.data.get('username')
+    email = request.data.get('email')
+    password = request.data.get('password')
+
+    User.objects.create_user(username=username, password=password)
+
+    return Response({'message': 'User data getten successfully'})
+
 @api_view(['POST'])
 def make_event(request):
     title = request.data.get('title')
@@ -45,7 +55,7 @@ def make_event(request):
 def get_events(request: HttpRequest):
     try:
         events = Events.objects.all()
-        serialized_events = [{'title': event.title, 'description': event.description, 'date': event.date, 'location': event.location} for event in events]
+        serialized_events = [{'title': event.title, 'description': event.description, 'date': event.date, 'location': event.location, 'image': event.image} for event in events]
         return Response(serialized_events)
     except Exception as e:
         print(f"Error in get_events view: {e}")
@@ -107,4 +117,25 @@ def get_reviews(request):
         return Response(serialized_reviews)
     except Exception as e:
         print(f"Error in get_reviews view: {e}")
+        return Response({'error': 'Internal Server Error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['POST'])
+def upload_images(request):
+    selectBuilding = request.data.get('selectBuilding')
+    description = request.data.get('description')
+    image = request.data.get('image')
+
+    Images.objects.create(selectBuilding=selectBuilding, description=description, image=image)
+
+    return Response({'message': 'Image uploaded successfully'})
+
+
+@api_view(['GET'])
+def get_images(request: HttpRequest):
+    try:
+        images = Images.objects.all()
+        serialized_images = [{'selectBuilding': image.selectBuilding, 'description': image.description, 'image': image.image} for image in images]
+        return Response(serialized_images)
+    except Exception as e:
+        print(f"Error in get_images view: {e}")
         return Response({'error': 'Internal Server Error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -31,7 +31,7 @@ const Navbar = () => {
                 password: password,
             };
 
-            axiosInstance.post('http://mrhaydenn.us.to:8000/api/login/', data)
+            axiosInstance.post('http://127.0.0.1:8000/api/login/', data)
                 .then(response => {
                     console.log(response.data);
                     localStorage.setItem('token', response.data.token);

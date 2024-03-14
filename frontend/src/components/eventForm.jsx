@@ -29,7 +29,9 @@ const EventForm = () => {
     };
 
     try {
-      const response = await axios.post('http://mrhaydenn.us.to:8000/api/makeEvent/', eventData);
+      // http://mrhaydenn.us.to:8000/api/makeEvent/
+      // http://127.0.0.1:8000/api/makeEvent/
+      const response = await axios.post('http://127.0.0.1:8000/api/makeEvent/', eventData);
       console.log('Event Created', response.data);
       setSubmitted(true);
 

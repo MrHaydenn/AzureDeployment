@@ -11,4 +11,7 @@ urlpatterns = [
     path('api/events/', views.get_events, name='get_events'),
     path('api/make_review/', views.submit_review, name='make_review'),
     path('api/get_reviews/', views.get_reviews, name='get_reviews'),
+    path('api/upload_images/', views.upload_images, name='upload_images'),
+    path('api/get_images/', views.get_images, name="get_images"),
+    path('api/get_user/', views.get_user, name="get_user"),
 ]

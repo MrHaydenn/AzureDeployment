@@ -35,6 +35,7 @@ import JumboAthletics from './components/jumboAthletics.jsx';
 import JumboRapp from './components/jumboRapp.jsx';
 import JumboStudentCenter from './components/jumboStudentCenter.jsx';
 import JumboSandE from './components/jumboSandE.jsx';
+import Gallery from './components/gallery.jsx';
 
 
 
@@ -88,6 +89,8 @@ const App = () => {
         <Route path='/Sports' element={<Sports />} />
 
         <Route path='/Studentcenter' element={<Studentcenter />} />
+
+        <Route path='/Gallery' element={<Gallery />} />
       </Routes>
     </Router>
   );
